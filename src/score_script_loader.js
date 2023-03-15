@@ -8,7 +8,7 @@ class ScoreScriptLoader
 
     load()
     {
-        const score = sample_score;
+        const score = JSON.parse(JSON.stringify(sample_score));
         try
         {
             score.forEach((v) =>

@@ -71,9 +71,20 @@ function keyDownCallBack(e)
         keyHandler.is_up_lane_six_key       = false;
     }
 
+    // TODO クラスわける！
     if (isBeforeStart && e.code === 'Enter')
     {
         isBeforeStart = false;
+        mainLoop();
+        return;
+    }
+    // TODO クラスわける！
+    if (isWaitingRetry && e.code === 'Enter')
+    {
+        isWaitingRetry = false;
+        loader.load();
+        executer.load(loader.getScoreScript());
+        resultManager.init();
         mainLoop();
         return;
     }

@@ -35,6 +35,7 @@ function update()
 
 // TODO READYやRETRY部分のクラスにわけたい
 let isBeforeStart = true;
+let isWaitingRetry = false;
 
 ctx.font        = JUDGE_TEXT_FONT;
 ctx.textAlign   = JUDGE_TEXT_ALIGN;

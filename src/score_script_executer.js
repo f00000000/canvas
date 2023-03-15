@@ -23,6 +23,11 @@ class ScoreScriptExecuter
         this.#score_script = score_script;
     }
 
+    load(score_script)
+    {
+        this.#score_script = score_script;
+    }
+
     isEmpty(obj)
     {
         return Object.keys(obj).length === 0;
