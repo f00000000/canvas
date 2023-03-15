@@ -12,6 +12,7 @@ class JudgeManager
 
     #judge_text_duration = JUDGE_TEXT_SHOW_DURATION;
     #latest_judge_state = JUDGE_NONE;
+    #latest_judge_ms = 0;
 
     constructor() {}
 
@@ -27,7 +28,10 @@ class JudgeManager
         exist.shift();
         const judge_state = this.#getJudgeState(latest);
         latest.setIsJudged(true);
+
         this.#latest_judge_state = judge_state;
+        this.#latest_judge_ms = latest.getDistanceMs();
+
         this.#judge_text_duration = JUDGE_TEXT_SHOW_DURATION;
 
         resultManager.add(judge_state);
@@ -79,6 +83,9 @@ class JudgeManager
                             JUDGE_TEXT[this.#latest_judge_state]                    :
                             JUDGE_TEXT[this.#latest_judge_state] + String(combo);
 
+        const judge_ms = this.#latest_judge_ms;
+
+        // 判定文字
         ctx.font = JUDGE_TEXT_FONT;
         ctx.textAlign = JUDGE_TEXT_ALIGN;
         ctx.fillText(
@@ -86,6 +93,19 @@ class JudgeManager
                         X_POS_JUDGE_TEXT,
                         Y_POS_JUDGE_TEXT
                     );
+
+        // 判定文字ms
+        // msがマイナスならSLOW
+        ctx.font = JUDGE_MS_TEXT_FONT;
+        ctx.fillStyle = (judge_ms < 0) ? COLOR_JUDGE_SLOW : COLOR_JUDGE_FAST;
+        const text_ms = (judge_ms === 0) ? '' : String(-judge_ms) + 'ms';
+        ctx.fillText(
+                        text_ms,
+                        X_POS_JUDGE_TEXT,
+                        Y_POS_JUDGE_MS_TEXT
+                    );
+
+        ctx.fillStyle = COLOR_INIT;
         ctx.textAlign = JUDGE_TEXT_ALIGN_INIT;
         this.#judge_text_duration --;
     }
@@ -97,6 +117,7 @@ class JudgeManager
         if (deads.length !== 0)
         {
             this.#latest_judge_state = JUDGE_AWFUL;
+            this.#latest_judge_ms = 0;
             resultManager.add(JUDGE_AWFUL);
             this.#judge_text_duration = JUDGE_TEXT_SHOW_DURATION;
         }

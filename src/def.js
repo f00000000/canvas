@@ -90,6 +90,8 @@ const JUDGE_MS = (JUDGE_LINE_Y_POS * 4) / NOTES_DROP_SPEED;
 
 // COLOR
 const COLOR_INIT = "#000";
+const COLOR_JUDGE_FAST = "#7AE";
+const COLOR_JUDGE_SLOW = "#E77";
 const COLOR_TRANSPARENT = "rgba(0, 0, 0, 0)";
 const COLOR_NOTES_DEFAULT = "#0095DD";
 
@@ -97,7 +99,9 @@ const COLOR_NOTES_DEFAULT = "#0095DD";
 const JUDGE_TEXT_SHOW_DURATION = 200;
 const X_POS_JUDGE_TEXT = canvas.width / 2;
 const Y_POS_JUDGE_TEXT = canvas.height / 2;
+const Y_POS_JUDGE_MS_TEXT = Y_POS_JUDGE_TEXT + 50;
 const JUDGE_TEXT_FONT = '60px sans-serif';
+const JUDGE_MS_TEXT_FONT = '40px sans-serif';
 const JUDGE_TEXT_ALIGN_INIT = 'start';
 const JUDGE_TEXT_ALIGN = 'center';
 
