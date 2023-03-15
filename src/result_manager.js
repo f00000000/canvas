@@ -74,5 +74,7 @@ class ResultManager
                     );
         ctx.textAlign = JUDGE_TEXT_ALIGN_INIT;
         clearInterval(mainLoopId);
+
+        isWaitingRetry = true;
     }
 }
