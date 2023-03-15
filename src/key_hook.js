@@ -31,6 +31,18 @@ class KeyHandler
     {
         if (typeof lane !== 'string') { return false; }
     }
+
+    isLaneKey(key)
+    {
+        return  (
+                    key === LANE_ONE_KEY    ||
+                    key === LANE_TWO_KEY    ||
+                    key === LANE_THREE_KEY  ||
+                    key === LANE_FOUR_KEY   ||
+                    key === LANE_FIVE_KEY   ||
+                    key === LANE_SIX_KEY
+                );
+    }
 }
 
 const keyHandler = new KeyHandler();
@@ -91,6 +103,7 @@ function keyDownCallBack(e)
 
     if (!judger.isAlreadyPressed(key))
     {
+        if (!keyHandler.isLaneKey(key)) { return; }
         judger.judge(key);
     }
 }
